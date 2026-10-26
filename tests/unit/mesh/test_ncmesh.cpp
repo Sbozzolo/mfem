@@ -2952,9 +2952,11 @@ TEST_CASE("InternalBoundaryProjectBdrCoefficient", "[NCMesh]")
    }
 }
 
-TEST_CASE("NCMesh high-valence vertex refcount", "[NCMesh]")
+TEST_CASE("NCMesh high vertex reference count", "[NCMesh]")
 {
-  // Test that high-valence vertices (> 256) do not overflow.
+   // Test large vertex reference counts, supported up to the limit of
+   // std::uint16_t. K tets share a central axis edge, so the two axis
+   // vertices each have reference count K.
    auto make_spindle = [](int K)
    {
       Mesh mesh(3, K + 2, K);
